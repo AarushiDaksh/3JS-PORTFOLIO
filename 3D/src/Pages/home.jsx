@@ -95,7 +95,7 @@ const Home = () => {
       {/* About Section */}
       {isMobile ? (
   showAbout && (
-    <div className="fixed top-0 left-0 w-full h-full bg-white z-50 overflow-auto">
+    <div className="fixed top-0 left-0 w-full h-screen bg-white z-50 overflow-y-auto">
       <About show={showAbout} onClose={() => setShowAbout(false)} />
     </div>
   )
