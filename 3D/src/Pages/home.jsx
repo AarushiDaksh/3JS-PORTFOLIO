@@ -4,7 +4,7 @@ import { OrbitControls } from "@react-three/drei";
 import { Menu } from "lucide-react";
 import { soundoff, soundon } from "../assets/icons";
 import sakura from "../assets/sakura.mp3";
-import { PortfolioRoom } from "../models";
+import { AnimeModel } from "../models";
 import About from "../Components/About";
 
 const Home = () => {
@@ -86,7 +86,7 @@ const Home = () => {
             <ambientLight intensity={0.5} />
             <directionalLight position={[1, 3, 2]} intensity={1.5} />
             <hemisphereLight skyColor="#b1e1ff" groundColor="#000000" intensity={1} />
-            <PortfolioRoom scale={roomScale} onShowAbout={() => setShowAbout(true)} />
+            <AnimeModel scale={roomScale} />
             <OrbitControls enableZoom={true} />
           </Suspense>
         </Canvas>
