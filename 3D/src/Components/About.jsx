@@ -6,7 +6,6 @@ import { AnimeModel } from '../models';
 const About = ({ onClose, show }) => {
   const navigate = useNavigate();
   const [theme, setTheme] = useState('dark');
-  const [isBuildClicked, setIsBuildClicked] = useState(false);
 
   useEffect(() => {
     const storedTheme = localStorage.getItem('theme') || 'dark';
@@ -90,15 +89,8 @@ const About = ({ onClose, show }) => {
 
         <div className="flex flex-col space-y-3 mt-6">
           <button
-            className={`p-3 text-md font-semibold text-white rounded-lg transition duration-300 shadow-lg
-              ${isBuildClicked
-                ? 'bg-gradient-to-r from-red-500 to-purple-600'
-                : 'bg-gradient-to-r from-purple-400 to-red-500 hover:from-red-500 hover:to-purple-600'
-              }`}
-            onClick={() => {
-              setIsBuildClicked(true);
-              navigate('/contact');
-            }}
+            className="p-3 text-md font-semibold text-white bg-gradient-to-r from-purple-400 to-red-500 rounded-lg hover:from-red-500 hover:to-purple-600 transition duration-300 shadow-lg"
+            onClick={() => navigate('/contact')}
           >
             Let’s Build Something Amazing!
           </button>

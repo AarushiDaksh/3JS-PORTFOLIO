@@ -39,7 +39,7 @@ const Home = () => {
   }, []);
 
   return (
-    <section className="w-full h-screen flex flex-col relative overflow-hidden bg-black">
+    <section className="w-full h-screen flex flex-col relative overflow-hidden">
 
       {/* Navbar */}
       <div className="absolute top-4 left-4 z-30 flex items-center justify-between w-full px-4">
@@ -86,7 +86,7 @@ const Home = () => {
             <ambientLight intensity={0.5} />
             <directionalLight position={[1, 3, 2]} intensity={1.5} />
             <hemisphereLight skyColor="#b1e1ff" groundColor="#000000" intensity={1} />
-            <PortfolioRoom scale={roomScale} />
+            <PortfolioRoom scale={roomScale} onShowAbout={() => setShowAbout(true)} />
             <OrbitControls enableZoom={true} />
           </Suspense>
         </Canvas>
