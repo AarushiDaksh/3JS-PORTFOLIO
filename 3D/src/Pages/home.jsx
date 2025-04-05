@@ -94,32 +94,21 @@ const Home = () => {
 
       {/* About Section */}
       {isMobile ? (
-        <div
-          className={`w-full bg-white transition-all duration-500 absolute bottom-0 z-20 ${
-            showAbout ? "h-[37%]" : "h-0 overflow-hidden"
-          }`}
-        >
-          <About show={showAbout} onClose={() => setShowAbout(false)} />
-        </div>
-      ) : (
-        <div
-          className={`fixed top-0 left-0 h-full bg-white shadow-lg p-6 z-50 transition-transform duration-300 ${
-            showAbout ? "translate-x-0 w-96" : "-translate-x-full"
-          }`}
-        >
-          <About show={showAbout} onClose={() => setShowAbout(false)} />
-        </div>
-      )}
+  showAbout && (
+    <div className="w-full bg-white z-20">
+      <About show={showAbout} onClose={() => setShowAbout(false)} />
+    </div>
+  )
+) : (
+  <div
+    className={`fixed top-0 left-0 h-full bg-white shadow-lg p-6 z-50 transition-transform duration-300 ${
+      showAbout ? "translate-x-0 w-96" : "-translate-x-full"
+    }`}
+  >
+    <About show={showAbout} onClose={() => setShowAbout(false)} />
+  </div>
+)}
 
-      {/* Music Control */}
-      <div className="absolute bottom-4 left-4 z-40">
-        <img
-          src={isPlayingMusic ? soundon : soundoff}
-          alt="jukebox"
-          onClick={() => setIsPlayingMusic(!isPlayingMusic)}
-          className="w-10 h-10 cursor-pointer object-contain"
-        />
-      </div>
     </section>
   );
 };
