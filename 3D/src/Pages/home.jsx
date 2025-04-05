@@ -42,13 +42,24 @@ const Home = () => {
     <section className="w-full h-screen flex flex-col relative overflow-hidden bg-black">
 
       {/* Navbar */}
-      <div className="absolute top-4 left-4 z-20 flex items-center justify-between w-full px-4">
+      <div className="absolute top-4 left-4 z-30 flex items-center justify-between w-full px-4">
         {isMobile ? (
           <>
-            <Menu className="text-white w-8 h-8 cursor-pointer" onClick={() => setShowMenu(!showMenu)} />
+            <Menu
+              className="text-white w-8 h-8 cursor-pointer"
+              onClick={() => setShowMenu(!showMenu)}
+            />
             {showMenu && (
-              <div className="absolute top-12 left-4 bg-white shadow-md rounded-md p-3 flex flex-col space-y-2 z-30">
-                <button onClick={() => { setShowAbout(true); setShowMenu(false); }} className="hover:text-blue-500">About Me</button>
+              <div className="absolute top-12 left-4 bg-white shadow-md rounded-md p-3 flex flex-col space-y-2 z-40">
+                <button
+                  onClick={() => {
+                    setShowAbout(true);
+                    setShowMenu(false);
+                  }}
+                  className="hover:text-blue-500"
+                >
+                  About Me
+                </button>
                 <button className="hover:text-blue-500">Projects</button>
                 <button className="hover:text-blue-500">Contact</button>
               </div>
@@ -56,7 +67,12 @@ const Home = () => {
           </>
         ) : (
           <div className="absolute right-4 top-1/3 flex flex-col space-y-4 bg-white p-2 rounded-lg shadow-lg z-10">
-            <button className="p-2 text-sm font-semibold border-b hover:text-blue-600" onClick={() => setShowAbout(true)}>About Me</button>
+            <button
+              className="p-2 text-sm font-semibold border-b hover:text-blue-600"
+              onClick={() => setShowAbout(true)}
+            >
+              About Me
+            </button>
             <button className="p-2 text-sm font-semibold border-b hover:text-blue-600">Projects</button>
             <button className="p-2 text-sm font-semibold hover:text-blue-600">Get in Touch</button>
           </div>
@@ -78,17 +94,25 @@ const Home = () => {
 
       {/* About Section */}
       {isMobile ? (
-        <div className={`w-full bg-gray-900 transition-all duration-500 z-10 ${showAbout ? "h-[37%]" : "h-0 overflow-hidden"}`}>
+        <div
+          className={`w-full bg-white transition-all duration-500 absolute bottom-0 z-20 ${
+            showAbout ? "h-[37%]" : "h-0 overflow-hidden"
+          }`}
+        >
           <About show={showAbout} onClose={() => setShowAbout(false)} />
         </div>
       ) : (
-        <div className={`fixed top-0 left-0 h-full bg-white shadow-lg p-6 z-50 transition-transform duration-300 ${showAbout ? "translate-x-0 w-96" : "-translate-x-full"}`}>
+        <div
+          className={`fixed top-0 left-0 h-full bg-white shadow-lg p-6 z-50 transition-transform duration-300 ${
+            showAbout ? "translate-x-0 w-96" : "-translate-x-full"
+          }`}
+        >
           <About show={showAbout} onClose={() => setShowAbout(false)} />
         </div>
       )}
 
       {/* Music Control */}
-      <div className="absolute bottom-4 left-4 z-10">
+      <div className="absolute bottom-4 left-4 z-40">
         <img
           src={isPlayingMusic ? soundon : soundoff}
           alt="jukebox"
