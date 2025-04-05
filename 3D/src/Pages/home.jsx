@@ -38,6 +38,10 @@ const Home = () => {
     return () => window.removeEventListener("resize", updateRoomSize);
   }, []);
 
+  useEffect(() => {
+    document.body.style.overflow = showAbout ? "hidden" : "auto";
+  }, [showAbout]);
+
   return (
     <section className="w-full h-screen flex flex-col relative overflow-hidden">
 
@@ -46,18 +50,12 @@ const Home = () => {
         {isMobile ? (
           <>
             <Menu
-              className="text-white w-8 h-8 cursor-pointer"
+              className="text-black w-8 h-8 cursor-pointer"
               onClick={() => setShowMenu(!showMenu)}
             />
             {showMenu && (
-              <div className="absolute top-12 left-4 bg-white shadow-md rounded-md p-3 flex flex-col space-y-2 z-40">
-                <button
-                  onClick={() => {
-                    setShowAbout(true);
-                    setShowMenu(false);
-                  }}
-                  className="hover:text-blue-500"
-                >
+              <div className="absolute top-12 left-4 bg-white text-black shadow-md rounded-md p-3 flex flex-col space-y-2 z-40">
+                <button onClick={() => { setShowAbout(true); setShowMenu(false); }} className="hover:text-blue-500">
                   About Me
                 </button>
                 <button className="hover:text-blue-500">Projects</button>
@@ -66,11 +64,8 @@ const Home = () => {
             )}
           </>
         ) : (
-          <div className="absolute right-4 top-1/3 flex flex-col space-y-4 bg-white p-2 rounded-lg shadow-lg z-10">
-            <button
-              className="p-2 text-sm font-semibold border-b hover:text-blue-600"
-              onClick={() => setShowAbout(true)}
-            >
+          <div className="absolute right-4 top-1/3 flex flex-col space-y-4 bg-white text-black p-2 rounded-lg shadow-lg z-10">
+            <button className="p-2 text-sm font-semibold border-b hover:text-blue-600" onClick={() => setShowAbout(true)}>
               About Me
             </button>
             <button className="p-2 text-sm font-semibold border-b hover:text-blue-600">Projects</button>
@@ -92,35 +87,16 @@ const Home = () => {
         </Canvas>
       </div>
 
-      {/* About Section */}
-      <>
-  {/* Backdrop overlay with blur and dimming */}
-  {showAbout && (
-    <div className="fixed inset-0 bg-black bg-opacity-30 backdrop-blur-sm z-40 transition-opacity duration-500" />
-  )}
-
-  {/* About Section */}
-  {isMobile ? (
-    <div
-      className={`fixed bottom-0 left-0 w-full bg-white z-50 overflow-y-auto transition-transform duration-500 ease-in-out ${
-        showAbout ? "translate-y-0" : "translate-y-full"
-      }`}
-      style={{ maxHeight: "100%", height: "100%" }}
-    >
-      <About show={showAbout} onClose={() => setShowAbout(false)} />
-    </div>
-  ) : (
-    <div
-      className={`fixed top-0 left-0 h-full bg-white shadow-lg p-6 z-50 transition-transform duration-500 ease-in-out ${
-        showAbout ? "translate-x-0 w-96" : "-translate-x-full"
-      }`}
-    >
-      <About show={showAbout} onClose={() => setShowAbout(false)} />
-    </div>
-  )}
-</>
-
-
+      {/* About Panel */}
+      <div
+        className={`fixed z-50 transition-all duration-500 ease-in-out ${
+          isMobile
+            ? `${showAbout ? "bottom-0 max-h-screen opacity-100" : "bottom-[-100%] opacity-0"} left-0 w-full bg-white overflow-hidden`
+            : `${showAbout ? "left-0 translate-x-0" : "-translate-x-full"} top-0 h-full w-96 bg-white shadow-lg p-6`
+        }`}
+      >
+        <About show={showAbout} onClose={() => setShowAbout(false)} />
+      </div>
     </section>
   );
 };
