@@ -39,7 +39,7 @@ const Home = () => {
   }, []);
 
   return (
-    <section className="w-full h-screen flex flex-col relative overflow-hidden bg-black">
+    <section className="w-full h-screen flex flex-col relative overflow-hidden">
 
       {/* Navbar */}
       <div className="absolute top-4 left-4 z-30 flex items-center justify-between w-full px-4">
