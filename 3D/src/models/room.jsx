@@ -1,30 +1,28 @@
 import React, { useEffect, useRef } from "react";
-import { useFrame } from "@react-three/fiber";
 import { Html, Text, useGLTF } from "@react-three/drei";
-import roomScene from "../assets/3d/home-room.glb";
+import { useFrame } from "@react-three/fiber";
 
-export function PortfolioRoom({ onShowAbout, ...props }) {
-  const roomRef = useRef();
-  const { scene, nodes, materials } = useGLTF(roomScene);
+import skyboxScene from "../assets/3d/skybox_stylized_room.glb";
+
+export function PortfolioRoom({ onShowAbout }) {
+  const skyRef = useRef();
+  const { scene: skybox } = useGLTF(skyboxScene);
 
   useEffect(() => {
-    if (roomRef.current) {
-      roomRef.current.position.set(0, -1, 0);
-      roomRef.current.scale.set(1, 1, 1);
+    if (skyRef.current) {
+      skyRef.current.position.set(0, 0, -5); // Keep it behind
+      skyRef.current.scale.set(10, 10, 10);  // Adjust to fill the background
     }
   }, []);
 
-  useFrame(() => {
-    if (roomRef.current) {
-      roomRef.current.rotation.y += 0.001;
-    }
-  });
-
   return (
-    <group ref={roomRef} {...props} dispose={null}>
-      {/* Floating Button */}
+    <group>
+      {/* ✅ Background Skybox Model */}
+      <primitive ref={skyRef} object={skybox} />
+
+      {/* ✅ Floating Button */}
       <Html position={[1.2, 1.5, -2]} center>
-        <button 
+        <button
           className="bg-white p-2 rounded shadow-lg text-xs font-semibold hover:bg-gray-300 transition"
           onClick={onShowAbout}
         >
@@ -32,18 +30,27 @@ export function PortfolioRoom({ onShowAbout, ...props }) {
         </button>
       </Html>
 
-      {/* Name Text */}
-      <Text position={[0, 2.75, 0]} fontSize={0.30} color="#002D62" textAlign="center">
+      {/* ✅ Floating Text */}
+      <Text
+        position={[0, 2.75, 0]}
+        fontSize={0.7}
+        color="#002D62"
+        textAlign="center"
+      >
         Aarushi Daksh
       </Text>
 
-      {/* Subtitle Text */}
-      <Text position={[0, 2.5, 0]} fontSize={0.18} color="red" textAlign="center">
+      <Text
+        position={[0, 2, 0]}
+        fontSize={0.4}
+        color="red"
+        textAlign="center"
+        
+      >
         Have Fun Exploring
       </Text>
-
-      {/* Room Structure */}
-      <primitive object={scene} />
     </group>
   );
 }
+
+useGLTF.preload(skyboxScene);

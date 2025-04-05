@@ -101,7 +101,7 @@ const Home = () => {
       
       <button
         onClick={() => setIsPlayingMusic(!isPlayingMusic)}
-        className="absolute top-4 right-4 sm:top-auto sm:bottom-4 z-[9999] bg-white text-black p-3 sm:p-2 rounded-full shadow-lg hover:bg-gray-200 transition"
+        className="absolute top-3 right-4 sm:top-auto sm:bottom-4 z-[9999] bg-white text-black p-3 sm:p-2 rounded-full shadow-lg hover:bg-gray-200 transition"
         title={isPlayingMusic ? "Pause Music" : "Play Music"}
       >
         <img
