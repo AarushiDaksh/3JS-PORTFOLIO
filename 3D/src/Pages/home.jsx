@@ -95,7 +95,7 @@ const Home = () => {
       {/* About Section */}
       {isMobile ? (
   showAbout && (
-    <div className="w-full bg-white z-20">
+    <div className="fixed top-0 left-0 w-full h-full bg-white z-50 overflow-auto">
       <About show={showAbout} onClose={() => setShowAbout(false)} />
     </div>
   )
@@ -108,6 +108,7 @@ const Home = () => {
     <About show={showAbout} onClose={() => setShowAbout(false)} />
   </div>
 )}
+
 
     </section>
   );
