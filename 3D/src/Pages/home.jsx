@@ -98,13 +98,20 @@ const Home = () => {
         <About show={showAbout} onClose={() => setShowAbout(false)} />
       </div>
       {/* Music Control Button */}
+      {/* Music Toggle Button (Visible on Mobile & Desktop) */}
       <button
         onClick={() => setIsPlayingMusic(!isPlayingMusic)}
-        className="absolute bottom-6 right-6 z-50 bg-white text-black p-2 rounded-full shadow-lg hover:bg-gray-200 transition"
-        title="Toggle Music"
+        className="absolute bottom-4 right-4 z-50 bg-white text-black p-3 sm:p-2 rounded-full shadow-lg hover:bg-gray-200 transition"
+
+        title={isPlayingMusic ? "Pause Music" : "Play Music"}
       >
-        <img src={isPlayingMusic ? soundon : soundoff} alt="Sound Icon" className="w-6 h-6" />
+        <img
+          src={isPlayingMusic ? soundon : soundoff}
+          alt="Sound Icon"
+          className="w-6 h-6"
+        />
       </button>
+
 
     </section>
   );
