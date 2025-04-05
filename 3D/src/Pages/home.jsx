@@ -93,21 +93,32 @@ const Home = () => {
       </div>
 
       {/* About Section */}
-      {isMobile ? (
-  showAbout && (
-    <div className="fixed top-0 left-0 w-full h-screen bg-white z-50 overflow-y-auto">
+      <>
+  {/* Backdrop overlay with blur and dimming */}
+  {showAbout && (
+    <div className="fixed inset-0 bg-black bg-opacity-30 backdrop-blur-sm z-40 transition-opacity duration-500" />
+  )}
+
+  {/* About Section */}
+  {isMobile ? (
+    <div
+      className={`fixed bottom-0 left-0 w-full bg-white z-50 overflow-y-auto transition-transform duration-500 ease-in-out ${
+        showAbout ? "translate-y-0" : "translate-y-full"
+      }`}
+      style={{ maxHeight: "100%", height: "100%" }}
+    >
       <About show={showAbout} onClose={() => setShowAbout(false)} />
     </div>
-  )
-) : (
-  <div
-    className={`fixed top-0 left-0 h-full bg-white shadow-lg p-6 z-50 transition-transform duration-300 ${
-      showAbout ? "translate-x-0 w-96" : "-translate-x-full"
-    }`}
-  >
-    <About show={showAbout} onClose={() => setShowAbout(false)} />
-  </div>
-)}
+  ) : (
+    <div
+      className={`fixed top-0 left-0 h-full bg-white shadow-lg p-6 z-50 transition-transform duration-500 ease-in-out ${
+        showAbout ? "translate-x-0 w-96" : "-translate-x-full"
+      }`}
+    >
+      <About show={showAbout} onClose={() => setShowAbout(false)} />
+    </div>
+  )}
+</>
 
 
     </section>
