@@ -1,6 +1,7 @@
-import React, { useEffect, useRef } from "react";
+import React, { useRef } from "react";
 import { Html, Text, useGLTF } from "@react-three/drei";
 import { useFrame } from "@react-three/fiber";
+import * as THREE from "three";
 
 import skyboxScene from "../assets/3d/skybox_stylized_room.glb";
 
@@ -8,17 +9,27 @@ export function PortfolioRoom({ onShowAbout }) {
   const skyRef = useRef();
   const { scene: skybox } = useGLTF(skyboxScene);
 
-  useEffect(() => {
-    if (skyRef.current) {
-      skyRef.current.position.set(0, 0, -5); // Keep it behind
-      skyRef.current.scale.set(10, 10, 10);  // Adjust to fill the background
+  // Invert normals once on mount
+  React.useEffect(() => {
+    if (skybox) {
+      skybox.traverse((child) => {
+        if (child.isMesh) {
+          child.material.side = THREE.BackSide; // 🔁 Make it a skybox
+        }
+      });
     }
-  }, []);
+
+    if (skyRef.current) {
+      skyRef.current.scale.set(15, 15, 15); // Big enough to wrap camera
+    }
+  }, [skybox]);
 
   return (
     <group>
-      {/* ✅ Background Skybox Model */}
+      {/* ✅ Background Skybox wrapped around */}
       <primitive ref={skyRef} object={skybox} />
+      
+      
 
       {/* ✅ Floating Button */}
       <Html position={[1.2, 1.5, -2]} center>
@@ -45,7 +56,6 @@ export function PortfolioRoom({ onShowAbout }) {
         fontSize={0.4}
         color="red"
         textAlign="center"
-        
       >
         Have Fun Exploring
       </Text>
@@ -53,4 +63,4 @@ export function PortfolioRoom({ onShowAbout }) {
   );
 }
 
-useGLTF.preload(skyboxScene);
+
