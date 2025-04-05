@@ -4,7 +4,7 @@ import { OrbitControls } from "@react-three/drei";
 import { Menu } from "lucide-react";
 import { soundoff, soundon } from "../assets/icons";
 import sakura from "../assets/sakura.mp3";
-import { AnimeModel } from "../models";
+import { PortfolioRoom } from "../models";
 import About from "../Components/About";
 
 const Home = () => {
@@ -39,7 +39,7 @@ const Home = () => {
   }, []);
 
   return (
-    <section className="w-full h-screen flex flex-col relative overflow-hidden">
+    <section className="w-full h-screen flex flex-col relative overflow-hidden ">
 
       {/* Navbar */}
       <div className="absolute top-4 left-4 z-30 flex items-center justify-between w-full px-4">
@@ -86,7 +86,7 @@ const Home = () => {
             <ambientLight intensity={0.5} />
             <directionalLight position={[1, 3, 2]} intensity={1.5} />
             <hemisphereLight skyColor="#b1e1ff" groundColor="#000000" intensity={1} />
-            <AnimeModel scale={roomScale} />
+            <PortfolioRoom scale={roomScale} onShowAbout={() => setShowAbout(true)} />
             <OrbitControls enableZoom={true} />
           </Suspense>
         </Canvas>
