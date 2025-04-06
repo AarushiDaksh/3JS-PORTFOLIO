@@ -20,7 +20,7 @@ export function PortfolioRoom({ onShowAbout }) {
     }
 
     if (skyRef.current) {
-      skyRef.current.scale.set(15, 15, 15); // Big enough to wrap camera
+      skyRef.current.scale.set(11, 11, 11); // Big enough to wrap camera
     }
   }, [skybox]);
 
