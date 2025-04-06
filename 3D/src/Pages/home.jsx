@@ -50,7 +50,7 @@ const Home = () => {
           <>
             <div className="flex items-center gap-3">
               <Menu
-                className="absolute top-3 right-4 text-white w-4 h-4 sm:w-6 sm:h-6 cursor-pointer drop-shadow"
+                className="text-white w-3 h-3 sm:w-6 sm:h-6 cursor-pointer drop-shadow"
                 onClick={() => setShowMenu(!showMenu)}
               />
               <h1 className="text-white text-lg sm:text-xl font-bold drop-shadow-md tracking-wider">
@@ -79,7 +79,7 @@ const Home = () => {
           </>
         ) : (
           <>
-            <h1 className="text-white  sm:text-xl font-bold drop-shadow-md  tracking-wider">
+            <h1 className="text-white text-lg sm:text-xl font-bold drop-shadow-md tracking-wider">
               Aarushi
             </h1>
             <div className="flex space-x-6 bg-white/10 backdrop-blur-md px-6 py-3 rounded-full shadow-lg text-white text-sm font-semibold">
