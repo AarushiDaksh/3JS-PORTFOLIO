@@ -44,21 +44,21 @@ const Home = () => {
 
   return (
     <section className="w-full h-screen flex flex-col relative overflow-hidden">
-
       {/* Navbar */}
       <div className="absolute top-6 left-0 w-full flex justify-between items-center px-6 z-50">
-        <h1 className="text-white text-lg sm:text-xl font-bold drop-shadow-md tracking-wider">
-          Aarushi
-        </h1>
-
         {isMobile ? (
-          <div className="relative z-50">
-            <Menu
-              className="text-white w-6 h-6 sm:w-8 sm:h-8 cursor-pointer drop-shadow"
-              onClick={() => setShowMenu(!showMenu)}
-            />
+          <>
+            <div className="flex items-center gap-3">
+              <Menu
+                className="text-white w-5 h-5 sm:w-6 sm:h-6 cursor-pointer drop-shadow"
+                onClick={() => setShowMenu(!showMenu)}
+              />
+              <h1 className="text-white text-lg sm:text-xl font-bold drop-shadow-md tracking-wider">
+                Aarushi
+              </h1>
+            </div>
             {showMenu && (
-              <div className="absolute right-0 mt-4 w-40 sm:w-48 p-4 rounded-xl border border-white/20 bg-white/10 backdrop-blur-md shadow-2xl flex flex-col gap-2 sm:gap-3 animate-fadeIn transition-all duration-300 ease-out z-50">
+              <div className="absolute left-6 mt-16 w-40 sm:w-48 p-4 rounded-xl border border-white/20 bg-white/10 backdrop-blur-md shadow-2xl flex flex-col gap-2 sm:gap-3 animate-fadeIn transition-all duration-300 ease-out z-50">
                 <button
                   onClick={() => {
                     setShowAbout(true);
@@ -76,15 +76,20 @@ const Home = () => {
                 </button>
               </div>
             )}
-          </div>
+          </>
         ) : (
-          <div className="flex space-x-6 bg-white/10 backdrop-blur-md px-6 py-3 rounded-full shadow-lg text-white text-sm font-semibold">
-            <button onClick={() => setShowAbout(true)} className="hover:text-blue-300 transition">
-              About Me
-            </button>
-            <button className="hover:text-blue-300 transition">Projects</button>
-            <button className="hover:text-blue-300 transition">Contact</button>
-          </div>
+          <>
+            <h1 className="text-white text-lg sm:text-xl font-bold drop-shadow-md tracking-wider">
+              Aarushi
+            </h1>
+            <div className="flex space-x-6 bg-white/10 backdrop-blur-md px-6 py-3 rounded-full shadow-lg text-white text-sm font-semibold">
+              <button onClick={() => setShowAbout(true)} className="hover:text-blue-300 transition">
+                About Me
+              </button>
+              <button className="hover:text-blue-300 transition">Projects</button>
+              <button className="hover:text-blue-300 transition">Contact</button>
+            </div>
+          </>
         )}
       </div>
 
