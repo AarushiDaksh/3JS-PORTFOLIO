@@ -45,7 +45,7 @@ const Home = () => {
   return (
     <section className="w-full h-screen flex flex-col relative overflow-hidden">
       {/* Navbar */}
-      <div className="absolute top-6 left-0 w-full flex justify-between items-center px-6 z-50">
+      <div className="absolute top-3 left-0 w-full flex justify-between items-center px-6 z-50">
         {isMobile ? (
           <>
             <div className="flex items-center gap-3">
@@ -58,7 +58,7 @@ const Home = () => {
               </h1>
             </div>
             {showMenu && (
-              <div className="absolute left-6 mt-16 w-40 sm:w-48 p-4 rounded-xl border border-white/20 bg-white/10 backdrop-blur-md shadow-2xl flex flex-col gap-2 sm:gap-3 animate-fadeIn transition-all duration-300 ease-out z-50">
+              <div className="absolute left-6 mt-10 w-40 sm:w-48 p-4 rounded-xl border border-white/20 bg-white/10 backdrop-blur-md shadow-2xl flex flex-col gap-2 sm:gap-3 animate-fadeIn transition-all duration-300 ease-out z-50">
                 <button
                   onClick={() => {
                     setShowAbout(true);
