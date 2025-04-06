@@ -44,7 +44,7 @@ export function PortfolioRoom({ onShowAbout }) {
       {/* ✅ Floating Text */}
       <Text
         position={[0, 2.75, 0]}
-        fontSize={0.7}
+        fontSize={0.5}
         color="#002D62"
         textAlign="center"
       >
@@ -53,7 +53,7 @@ export function PortfolioRoom({ onShowAbout }) {
 
       <Text
         position={[0, 2, 0]}
-        fontSize={0.4}
+        fontSize={0.3}
         color="red"
         textAlign="center"
       >

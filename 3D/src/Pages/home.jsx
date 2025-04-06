@@ -45,34 +45,51 @@ const Home = () => {
   return (
     <section className="w-full h-screen flex flex-col relative overflow-hidden">
 
-      {/* Navbar */}
-      <div className="absolute top-4 left-4 z-30 flex items-center justify-between w-full px-4">
-        {isMobile ? (
-          <>
-            <Menu
-              className="text-black w-8 h-8 cursor-pointer"
-              onClick={() => setShowMenu(!showMenu)}
-            />
-            {showMenu && (
-              <div className="absolute top-12 left-4 bg-white text-black shadow-md rounded-md p-3 flex flex-col space-y-2 z-40">
-                <button onClick={() => { setShowAbout(true); setShowMenu(false); }} className="hover:text-blue-500">
-                  About Me
-                </button>
-                <button className="hover:text-blue-500">Projects</button>
-                <button className="hover:text-blue-500">Contact</button>
-              </div>
-            )}
-          </>
-        ) : (
-          <div className="absolute right-4 top-1/3 flex flex-col space-y-4 bg-white text-black p-2 rounded-lg shadow-lg z-10">
-            <button className="p-2 text-sm font-semibold border-b hover:text-blue-600" onClick={() => setShowAbout(true)}>
-              About Me
-            </button>
-            <button className="p-2 text-sm font-semibold border-b hover:text-blue-600">Projects</button>
-            <button className="p-2 text-sm font-semibold hover:text-blue-600">Get in Touch</button>
-          </div>
-        )}
+    {/* Navbar */}
+<div className="absolute top-6 left-0 w-full flex justify-between items-center px-6 z-30">
+  <h1 className="text-white text-xl font-bold drop-shadow-md tracking-wider">
+    Aarushi
+  </h1>
+
+  {isMobile ? (
+  <div className="relative z-40">
+    <Menu
+      className="text-white w-8 h-8 cursor-pointer drop-shadow"
+      onClick={() => setShowMenu(!showMenu)}
+    />
+    {showMenu && (
+      <div className="absolute right-0 mt-4 w-48 p-4 rounded-xl border border-white/20 bg-white/10 backdrop-blur-md shadow-2xl flex flex-col gap-3 animate-fadeIn transition-all duration-300 ease-out">
+        <button
+          onClick={() => {
+            setShowAbout(true);
+            setShowMenu(false);
+          }}
+          className="text-white/90 hover:text-blue-300 font-medium transition"
+        >
+          About Me
+        </button>
+        <button className="text-white/90 hover:text-blue-300 font-medium transition">
+          Projects
+        </button>
+        <button className="text-white/90 hover:text-blue-300 font-medium transition">
+          Contact
+        </button>
       </div>
+    )}
+  </div>
+) : (
+  
+
+  
+    <div className="flex space-x-6 bg-white/10 backdrop-blur-md px-6 py-3 rounded-full shadow-lg text-white text-sm font-semibold">
+      <button onClick={() => setShowAbout(true)} className="hover:text-blue-300 transition">
+        About Me
+      </button>
+      <button className="hover:text-blue-300 transition">Projects</button>
+      <button className="hover:text-blue-300 transition">Contact</button>
+    </div>
+  )}
+</div>
 
       {/* 3D Scene */}
       <div className={`flex-1 ${isMobile ? "h-2/3" : "h-full"} relative`}>
