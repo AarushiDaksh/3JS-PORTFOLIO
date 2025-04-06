@@ -3,7 +3,7 @@ import { Canvas } from "@react-three/fiber";
 import { OrbitControls } from "@react-three/drei";
 import { Menu } from "lucide-react";
 import { soundoff, soundon } from "../assets/icons";
-import sakura from "../assets/sakura.mp3";
+import sakura from "../assets/audio.m4a";
 import { PortfolioRoom } from "../models";
 import About from "../Components/About";
 
@@ -47,31 +47,31 @@ const Home = () => {
 
       {/* Navbar */}
       <div className="absolute top-6 left-0 w-full flex justify-between items-center px-6 z-50">
-        <h1 className="text-white text-xl font-bold drop-shadow-md tracking-wider">
+        <h1 className="text-white text-lg sm:text-xl font-bold drop-shadow-md tracking-wider">
           Aarushi
         </h1>
 
         {isMobile ? (
           <div className="relative z-50">
             <Menu
-              className="text-white w-8 h-8 cursor-pointer drop-shadow"
+              className="text-white w-6 h-6 sm:w-8 sm:h-8 cursor-pointer drop-shadow"
               onClick={() => setShowMenu(!showMenu)}
             />
             {showMenu && (
-              <div className="absolute right-0 mt-4 w-48 p-4 rounded-xl border border-white/20 bg-white/10 backdrop-blur-md shadow-2xl flex flex-col gap-3 animate-fadeIn transition-all duration-300 ease-out z-50">
+              <div className="absolute right-0 mt-4 w-40 sm:w-48 p-4 rounded-xl border border-white/20 bg-white/10 backdrop-blur-md shadow-2xl flex flex-col gap-2 sm:gap-3 animate-fadeIn transition-all duration-300 ease-out z-50">
                 <button
                   onClick={() => {
                     setShowAbout(true);
                     setShowMenu(false);
                   }}
-                  className="text-white/90 hover:text-blue-300 font-medium transition"
+                  className="text-white/90 hover:text-blue-300 text-sm font-medium transition"
                 >
                   About Me
                 </button>
-                <button className="text-white/90 hover:text-blue-300 font-medium transition">
+                <button className="text-white/90 hover:text-blue-300 text-sm font-medium transition">
                   Projects
                 </button>
-                <button className="text-white/90 hover:text-blue-300 font-medium transition">
+                <button className="text-white/90 hover:text-blue-300 text-sm font-medium transition">
                   Contact
                 </button>
               </div>
@@ -116,13 +116,13 @@ const Home = () => {
       {!showAbout && (
         <button
           onClick={() => setIsPlayingMusic(!isPlayingMusic)}
-          className="absolute top-3 right-4 sm:top-auto sm:bottom-4 z-[9999] bg-white text-black p-3 sm:p-2 rounded-full shadow-lg hover:bg-gray-200 transition"
+          className="absolute top-3 right-4 sm:top-auto sm:bottom-4 z-[9999] bg-white text-black p-2 sm:p-3 rounded-full shadow-lg hover:bg-gray-200 transition"
           title={isPlayingMusic ? "Pause Music" : "Play Music"}
         >
           <img
             src={isPlayingMusic ? soundon : soundoff}
             alt="Sound Icon"
-            className="w-6 h-6"
+            className="w-4 h-4 sm:w-6 sm:h-6"
           />
         </button>
       )}
