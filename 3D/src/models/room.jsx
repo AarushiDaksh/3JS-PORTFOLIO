@@ -17,7 +17,7 @@ export function PortfolioRoom({ onShowAbout }) {
     }
 
     if (skyRef.current) {
-      skyRef.current.scale.set(11, 11, 11);
+      skyRef.current.scale.set(10, 10, 10);
     }
   }, [skybox]);
 
