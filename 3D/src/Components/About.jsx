@@ -1,11 +1,9 @@
 import React, { useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
 import { Canvas } from '@react-three/fiber';
 import { motion, AnimatePresence } from 'framer-motion';
 import { AnimeModel } from '../models';
 
-const About = ({ onClose, show }) => {
-  const navigate = useNavigate();
+const About = ({ onClose, show, onOpenProjects }) => {
   const [theme, setTheme] = useState('dark');
 
   useEffect(() => {
@@ -49,10 +47,15 @@ const About = ({ onClose, show }) => {
               {/* Scrollable Content */}
               <div className="relative h-full overflow-y-scroll scrollbar-hide p-6 pt-12">
                 <div className="flex justify-between items-center mb-4">
-                  <button onClick={onClose} className="text-lg hover:text-red-500 transition">✕</button>
+                  <button
+                    onClick={onClose}
+                    className={`text-lg transition hover:text-red-500 ${isDark ? "text-white" : "text-black"}`}
+                  >
+                    ✕
+                  </button>
                   <button
                     onClick={toggleTheme}
-                    className="text-sm px-3 py-1 rounded-full bg-gradient-to-r from-blue-500 to-indigo-600 text-white hover:from-yellow-400 hover:to-red-400 transition"
+                    className="text-sm px-3 py-1 rounded-full bg-gradient-to-r from-green-400 to-teal-500 text-white hover:from-yellow-400 hover:to-red-400 transition"
                   >
                     {buttonText}
                   </button>
@@ -88,10 +91,7 @@ const About = ({ onClose, show }) => {
                 <div className="flex flex-col space-y-3 mt-6">
                   <button
                     className="p-3 text-md font-semibold text-white bg-gradient-to-r from-purple-400 to-red-500 rounded-lg hover:from-red-500 hover:to-purple-600 transition duration-300 shadow-lg"
-                    onClick={() => {
-                      navigate('/contact');
-                      onClose();
-                    }}
+                    onClick={onClose}
                   >
                     Let’s Build Something Amazing!
                   </button>
@@ -99,8 +99,8 @@ const About = ({ onClose, show }) => {
                   <button
                     className={`p-3 text-md font-semibold ${isDark ? 'text-gray-300 border border-gray-600 hover:bg-gray-800' : 'text-gray-800 border border-gray-300 hover:bg-gray-200'} rounded-lg transition duration-300`}
                     onClick={() => {
-                      navigate('/projects');
                       onClose();
+                      onOpenProjects();
                     }}
                   >
                     Explore My Creations 🚀
@@ -112,15 +112,14 @@ const About = ({ onClose, show }) => {
         )}
       </AnimatePresence>
 
-      {/* 👇 Inline Style for hiding scrollbar */}
       <style>
         {`
           .scrollbar-hide::-webkit-scrollbar {
             display: none;
           }
           .scrollbar-hide {
-            -ms-overflow-style: none; /* IE and Edge */
-            scrollbar-width: none; /* Firefox */
+            -ms-overflow-style: none;
+            scrollbar-width: none;
           }
         `}
       </style>

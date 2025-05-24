@@ -6,6 +6,7 @@ import { soundoff, soundon } from "../assets/icons";
 import sakura from "../assets/audio.m4a";
 import { PortfolioRoom } from "../models";
 import About from "../Components/About";
+import Projects from "../Components/Projects";
 
 const Home = () => {
   const audioRef = useRef(new Audio(sakura));
@@ -15,6 +16,7 @@ const Home = () => {
   const [isPlayingMusic, setIsPlayingMusic] = useState(false);
   const [roomScale, setRoomScale] = useState([1, 1, 1]);
   const [showAbout, setShowAbout] = useState(false);
+  const [showProjects, setShowProjects] = useState(false);
   const [isMobile, setIsMobile] = useState(window.innerWidth < 768);
   const [showMenu, setShowMenu] = useState(false);
 
@@ -39,8 +41,9 @@ const Home = () => {
   }, []);
 
   useEffect(() => {
-    document.body.style.overflow = showAbout ? "hidden" : "auto";
-  }, [showAbout]);
+    const isAnyPanelOpen = showAbout || showProjects;
+    document.body.style.overflow = isAnyPanelOpen ? "hidden" : "auto";
+  }, [showAbout, showProjects]);
 
   return (
     <section className="w-full h-screen flex flex-col relative overflow-hidden">
@@ -68,7 +71,13 @@ const Home = () => {
                 >
                   About Me
                 </button>
-                <button className="text-white/90 hover:text-blue-300 text-sm font-medium transition">
+                <button
+                  onClick={() => {
+                    setShowProjects(true);
+                    setShowMenu(false);
+                  }}
+                  className="text-white/90 hover:text-blue-300 text-sm font-medium transition"
+                >
                   Projects
                 </button>
                 <button className="text-white/90 hover:text-blue-300 text-sm font-medium transition">
@@ -86,7 +95,9 @@ const Home = () => {
               <button onClick={() => setShowAbout(true)} className="hover:text-blue-300 transition">
                 About Me
               </button>
-              <button className="hover:text-blue-300 transition">Projects</button>
+              <button onClick={() => setShowProjects(true)} className="hover:text-blue-300 transition">
+                Projects
+              </button>
               <button className="hover:text-blue-300 transition">Contact</button>
             </div>
           </>
@@ -107,18 +118,40 @@ const Home = () => {
       </div>
 
       {/* About Panel */}
-      <div
-        className={`fixed z-50 transition-all duration-500 ease-in-out ${
-          isMobile
-            ? `${showAbout ? "bottom-0 h-screen opacity-100" : "bottom-[-100%] opacity-0"} left-0 w-full bg-white overflow-hidden`
-            : `${showAbout ? "left-0 translate-x-0" : "-translate-x-full"} top-0 h-full w-96 bg-white shadow-lg p-6`
-        }`}
-      >
-        <About show={showAbout} onClose={() => setShowAbout(false)} />
-      </div>
+      {showAbout && (
+        <div
+          className={`fixed z-50 transition-all duration-500 ease-in-out ${
+            isMobile
+              ? "bottom-0 h-screen left-0 w-full bg-white overflow-hidden"
+              : "left-0 translate-x-0 top-0 h-full w-96 bg-white shadow-lg p-6"
+          }`}
+        >
+          <About
+            show={showAbout}
+            onClose={() => setShowAbout(false)}
+            onOpenProjects={() => {
+              setShowAbout(false);
+              setShowProjects(true);
+            }}
+          />
+        </div>
+      )}
+
+      {/* Projects Panel */}
+      {showProjects && (
+        <div
+          className={`fixed z-50 transition-all duration-500 ease-in-out ${
+            isMobile
+              ? "bottom-0 h-screen left-0 w-full bg-white overflow-hidden"
+              : "right-0 translate-x-0 top-0 h-full w-[42rem] bg-white shadow-lg p-6"
+          }`}
+        >
+          <Projects show={showProjects} onClose={() => setShowProjects(false)} />
+        </div>
+      )}
 
       {/* Music Control Button */}
-      {!showAbout && (
+      {!showAbout && !showProjects && (
         <button
           onClick={() => setIsPlayingMusic(!isPlayingMusic)}
           className="absolute top-3 right-4 sm:top-auto sm:bottom-4 z-[9999] bg-white text-black p-2 sm:p-3 rounded-full shadow-lg hover:bg-gray-200 transition"
