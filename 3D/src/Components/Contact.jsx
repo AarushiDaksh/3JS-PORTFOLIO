@@ -73,8 +73,8 @@ const Contact = ({ show, onClose }) => {
           <div
             className={`relative w-full max-w-md h-screen rounded-2xl shadow-2xl border border-white/10 overflow-hidden ${bgColor}`}
           >
-            {/* Header */}
-            <div className="flex justify-between items-center px-6 pt-6">
+            {/* Header (Sticky) */}
+            <div className="flex justify-between items-center px-6 pt-6 pb-2 sticky top-0 z-10 bg-opacity-80 backdrop-blur-lg">
               <button
                 onClick={onClose}
                 className={`text-2xl transition hover:text-red-500 ${textColor}`}
@@ -89,8 +89,8 @@ const Contact = ({ show, onClose }) => {
               </button>
             </div>
 
-            {/* Form */}
-            <div className="p-6 pt-4 overflow-y-auto max-h-full scrollbar-hide">
+            {/* Scrollable Content */}
+            <div className="p-6 pt-2 overflow-y-auto max-h-[calc(100vh-80px)] scrollbar-hide">
               <h2
                 className={`text-3xl font-bold mb-6 ${textColor} tracking-wide uppercase font-mono text-center`}
               >
