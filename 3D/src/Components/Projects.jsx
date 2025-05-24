@@ -29,20 +29,39 @@ const Projects = ({ show, onClose }) => {
     {
       name: "Voqit Movie App 🎬",
       desc: "React Native + TMDB API + Clerk auth.",
-      img: "/images/voqit-movie.png",
-      github: "https://github.com/AarushiDaksh/voqit-movies-react-native-app.git",
+      img: "/images/6.png",
+      github: "https://github.com/AarushiDaksh/movie-native-app",
     },
     {
       name: "Voqit AI Chatbot 🤖",
       desc: "React, Clerk, TailwindCSS chatbot with Express API.",
-      img: "/images/voqit-ai.png",
-      github: "https://github.com/AarushiDaksh/voqit-ai-chatbot.git",
+      img: "/images/4.png",
+      github: "https://voqit-ai.vercel.app/",
     },
     {
       name: "3D Portfolio 🌐",
       desc: "Interactive 3D room portfolio using Three.js.",
-      img: "/images/portfolio-3d.png",
-      github: "https://github.com/AarushiDaksh/3d-portfolio.git",
+      img: "/images/1.png",
+      github: "https://3-js-portfolio-aarushi-dakshs-projects.vercel.app/",
+    },
+    {
+    name: "Express CRUD App 🛠️",
+    desc: "Basic CRUD operations with Express.js and MongoDB.",
+    img: "/images/2.png",
+    github: "https://github.com/AarushiDaksh/express-curd-app",
+    },
+
+    {
+      name: "E-commerce Platform 🛒",
+      desc: "Next.js and TypeScript based e-commerce application.",
+      img: "/images/5.png",
+      github: "https://superb-squirrel-63.accounts.dev/sign-in?redirect_url=https%3A%2F%2Fe-com-nextjs-voqit.vercel.app%2F",
+    },
+    {
+      name: "Razorpay Payment Integration 💳",
+      desc: "Payment gateway integration using Razorpay.",
+      img: "/images/3.png",
+      github: "https://github.com/AarushiDaksh/https---github.com-AarushiDaksh-razorpay_payment",
     },
   ];
 
@@ -65,21 +84,20 @@ const Projects = ({ show, onClose }) => {
             </div>
 
             <div className="relative h-full overflow-y-scroll scrollbar-hide p-6 pt-12">
-                        <div className="flex justify-between items-center mb-4">
-            <button
-                onClick={onClose}
-                className={`text-lg transition hover:text-red-500 ${isDark ? "text-white" : "text-black"}`}
-            >
-                ✕
-            </button>
-            <button
-                onClick={toggleTheme}
-                className="text-sm px-3 py-1 rounded-full bg-gradient-to-r from-green-400 to-teal-500 text-white hover:from-yellow-400 hover:to-red-400 transition"
-            >
-                {buttonText}
-            </button>
-            </div>
-
+              <div className="flex justify-between items-center mb-4">
+                <button
+                  onClick={onClose}
+                  className={`text-lg transition hover:text-red-500 ${isDark ? "text-white" : "text-black"}`}
+                >
+                  ✕
+                </button>
+                <button
+                  onClick={toggleTheme}
+                  className="text-sm px-3 py-1 rounded-full bg-gradient-to-r from-green-400 to-teal-500 text-white hover:from-yellow-400 hover:to-red-400 transition"
+                >
+                  {buttonText}
+                </button>
+              </div>
 
               <h2 className={`text-3xl font-bold mb-4 ${textColor} font-mono tracking-wide uppercase`}>
                 My Projects 🚀
@@ -103,6 +121,17 @@ const Projects = ({ show, onClose }) => {
                     </div>
                   </div>
                 ))}
+              </div>
+
+              <div className="flex justify-center mt-8">
+                <a
+                  href="https://github.com/AarushiDaksh"
+                  target="_blank"
+                  rel="noreferrer"
+                  className="px-6 py-3 rounded-full text-md font-semibold bg-gradient-to-r from-blue-500 to-indigo-500 text-white hover:from-indigo-500 hover:to-blue-500 transition"
+                >
+                  Visit My GitHub Profile
+                </a>
               </div>
 
               <div className="w-full h-[300px] mt-10">
