@@ -1,1 +1,4 @@
 @import "tailwindcss";
+body {
+  cursor: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' height='24' width='24'><text y='16' font-size='16'>🌸</text></svg>") 0 0, auto;
+}
