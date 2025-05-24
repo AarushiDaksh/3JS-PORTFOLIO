@@ -5,7 +5,7 @@ import { FaGithub, FaLinkedin } from "react-icons/fa";
 
 const Contact = ({ show, onClose }) => {
   const [theme, setTheme] = useState("dark");
-  const [form, setForm] = useState({ name: "", email: "", message: "" });
+  const [form, setForm] = useState({ name: "", message: "" });
   const [loading, setLoading] = useState(false);
   const [sent, setSent] = useState(false);
 
@@ -37,7 +37,6 @@ const Contact = ({ show, onClose }) => {
         import.meta.env.VITE_EMAILJS_TEMPLATE_ID,
         {
           from_name: form.name,
-          from_email: form.email,
           message: form.message,
         },
         import.meta.env.VITE_EMAILJS_PUBLIC_KEY
@@ -45,7 +44,7 @@ const Contact = ({ show, onClose }) => {
       .then(() => {
         setLoading(false);
         setSent(true);
-        setForm({ name: "", email: "", message: "" });
+        setForm({ name: "", message: "" });
         setTimeout(() => setSent(false), 4000);
       })
       .catch(() => {
@@ -91,7 +90,7 @@ const Contact = ({ show, onClose }) => {
             </div>
 
             {/* Form */}
-            <div className="p-6 pt-4 overflow-y-scroll scrollbar-hide h-full">
+            <div className="p-6 pt-4 overflow-y-auto max-h-full scrollbar-hide">
               <h2
                 className={`text-3xl font-bold mb-6 ${textColor} tracking-wide uppercase font-mono text-center`}
               >
@@ -105,15 +104,6 @@ const Contact = ({ show, onClose }) => {
                   value={form.name}
                   onChange={handleChange}
                   placeholder="Your Name"
-                  required
-                  className="w-full px-4 py-3 rounded-xl bg-white text-black border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500 transition"
-                />
-                <input
-                  type="email"
-                  name="email"
-                  value={form.email}
-                  onChange={handleChange}
-                  placeholder="Your Email"
                   required
                   className="w-full px-4 py-3 rounded-xl bg-white text-black border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500 transition"
                 />
