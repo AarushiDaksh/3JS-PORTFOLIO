@@ -153,7 +153,7 @@ const Contact = ({ show, onClose }) => {
                   <FaGithub />
                 </a>
                 <a
-                  href="https://www.linkedin.com/in/aarushi-daksh/"
+                  href="https://www.linkedin.com/in/aarushidaksh/"
                   target="_blank"
                   rel="noreferrer"
                   className="text-white hover:text-blue-400 transition-transform transform hover:scale-110"
