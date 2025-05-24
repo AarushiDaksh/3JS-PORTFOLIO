@@ -4,9 +4,11 @@ import { OrbitControls } from "@react-three/drei";
 import { Menu } from "lucide-react";
 import { soundoff, soundon } from "../assets/icons";
 import sakura from "../assets/audio.m4a";
+
 import { PortfolioRoom } from "../models";
 import About from "../Components/About";
 import Projects from "../Components/Projects";
+import Contact from "../Components/Contact";
 
 const Home = () => {
   const audioRef = useRef(new Audio(sakura));
@@ -17,6 +19,7 @@ const Home = () => {
   const [roomScale, setRoomScale] = useState([1, 1, 1]);
   const [showAbout, setShowAbout] = useState(false);
   const [showProjects, setShowProjects] = useState(false);
+  const [showContact, setShowContact] = useState(false);
   const [isMobile, setIsMobile] = useState(window.innerWidth < 768);
   const [showMenu, setShowMenu] = useState(false);
 
@@ -41,9 +44,9 @@ const Home = () => {
   }, []);
 
   useEffect(() => {
-    const isAnyPanelOpen = showAbout || showProjects;
+    const isAnyPanelOpen = showAbout || showProjects || showContact;
     document.body.style.overflow = isAnyPanelOpen ? "hidden" : "auto";
-  }, [showAbout, showProjects]);
+  }, [showAbout, showProjects, showContact]);
 
   return (
     <section className="w-full h-screen flex flex-col relative overflow-hidden">
@@ -80,7 +83,13 @@ const Home = () => {
                 >
                   Projects
                 </button>
-                <button className="text-white/90 hover:text-blue-300 text-sm font-medium transition">
+                <button
+                  onClick={() => {
+                    setShowContact(true);
+                    setShowMenu(false);
+                  }}
+                  className="text-white/90 hover:text-blue-300 text-sm font-medium transition"
+                >
                   Contact
                 </button>
               </div>
@@ -98,7 +107,9 @@ const Home = () => {
               <button onClick={() => setShowProjects(true)} className="hover:text-blue-300 transition">
                 Projects
               </button>
-              <button className="hover:text-blue-300 transition">Contact</button>
+              <button onClick={() => setShowContact(true)} className="hover:text-blue-300 transition">
+                Contact
+              </button>
             </div>
           </>
         )}
@@ -133,6 +144,10 @@ const Home = () => {
               setShowAbout(false);
               setShowProjects(true);
             }}
+            onOpenContact={() => {
+              setShowAbout(false);
+              setShowContact(true);
+            }}
           />
         </div>
       )}
@@ -146,12 +161,25 @@ const Home = () => {
               : "right-0 translate-x-0 top-0 h-full w-[42rem] bg-white shadow-lg p-6"
           }`}
         >
-          <Projects show={showProjects} onClose={() => setShowProjects(false)} />
+          <Projects
+          show={showProjects}
+          onClose={() => setShowProjects(false)}
+          onOpenContact={() => {
+            setShowProjects(false);
+            setShowContact(true);
+          }}
+        />
+
         </div>
       )}
 
-      {/* Music Control Button */}
-      {!showAbout && !showProjects && (
+      {/* Contact Panel */}
+      {showContact && (
+        <Contact show={showContact} onClose={() => setShowContact(false)} />
+      )}
+
+      {/* Music Control */}
+      {!showAbout && !showProjects && !showContact && (
         <button
           onClick={() => setIsPlayingMusic(!isPlayingMusic)}
           className="absolute top-3 right-4 sm:top-auto sm:bottom-4 z-[9999] bg-white text-black p-2 sm:p-3 rounded-full shadow-lg hover:bg-gray-200 transition"
