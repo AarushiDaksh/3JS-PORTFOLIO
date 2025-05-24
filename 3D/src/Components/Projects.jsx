@@ -45,8 +45,8 @@ const Projects = ({ show, onClose, onOpenContact }) => {
       github: "https://3-js-portfolio-aarushi-dakshs-projects.vercel.app/",
     },
     {
-      name: "Express CRUD App 🛠️",
-      desc: "Basic CRUD operations with Express.js and MongoDB.",
+      name: "Docker Express CRUD App 🛠️",
+      desc: "Basic CRUD operations with Express.js, MongoDB and Docker.",
       img: "/images/2.png",
       github: "https://github.com/AarushiDaksh/express-curd-app",
     },
