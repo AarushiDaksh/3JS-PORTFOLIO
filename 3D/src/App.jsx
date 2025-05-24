@@ -2,37 +2,60 @@ import React, { useEffect, useState } from "react";
 import Home from "./Pages/home";
 
 function App() {
-  const [pos, setPos] = useState({ x: 0, y: 0 });
+  const [bursts, setBursts] = useState([]);
+
+  const spawnFlower = (x, y) => {
+    const id = Date.now();
+    setBursts((prev) => [...prev, { id, x, y }]);
+    setTimeout(() => {
+      setBursts((prev) => prev.filter((b) => b.id !== id));
+    }, 1000); // auto-remove after 1s
+  };
 
   useEffect(() => {
-    const move = (e) => {
-      setPos({ x: e.clientX, y: e.clientY });
+    const handleClick = (e) => {
+      spawnFlower(e.clientX, e.clientY);
     };
-    window.addEventListener("mousemove", move);
-    return () => window.removeEventListener("mousemove", move);
+    const handleTouch = (e) => {
+      const touch = e.touches[0];
+      if (touch) spawnFlower(touch.clientX, touch.clientY);
+    };
+
+    window.addEventListener("click", handleClick);
+    window.addEventListener("touchstart", handleTouch);
+
+    return () => {
+      window.removeEventListener("click", handleClick);
+      window.removeEventListener("touchstart", handleTouch);
+    };
   }, []);
 
   return (
     <div
-      className="w-full h-screen relative"
+      className="w-full h-screen relative overflow-hidden"
       style={{
         cursor:
           "url('data:image/svg+xml;utf8,<svg xmlns=%22http://www.w3.org/2000/svg%22 height=%2236%22 width=%2236%22><text y=%2230%22 font-size=%2230%22>🌸</text></svg>') 0 0, auto",
       }}
     >
-      {/* Cursor highlight */}
-      <div
-        className="pointer-events-none fixed z-[9999] transition-all duration-75"
-        style={{
-          left: pos.x - 20,
-          top: pos.y - 20,
-          width: 40,
-          height: 40,
-          borderRadius: "50%",
-          background: "rgba(255,192,203,0.2)", // light pink glow
-          boxShadow: "0 0 15px rgba(255,105,180,0.5)", // pink glow
-        }}
-      />
+      {/* 🌼 Tap Bursts */}
+      {bursts.map((burst) => (
+        <div
+          key={burst.id}
+          className="animate-flower"
+          style={{
+            position: "fixed",
+            left: burst.x,
+            top: burst.y,
+            transform: "translate(-50%, -50%)",
+            fontSize: "28px",
+            pointerEvents: "none",
+            zIndex: 9999,
+          }}
+        >
+          🌼
+        </div>
+      ))}
 
       <Home />
     </div>
