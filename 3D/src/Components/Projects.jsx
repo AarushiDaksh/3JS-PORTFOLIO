@@ -36,13 +36,13 @@ const Projects = ({ show, onClose, onOpenContact }) => {
       name: "Voqit AI Chatbot 🤖",
       desc: "React, Clerk, TailwindCSS chatbot with Express API.",
       img: "/images/4.png",
-      github: "https://voqit-ai.vercel.app/",
+      Live: "https://voqit-ai.vercel.app/",
     },
     {
       name: "3D Portfolio 🌐",
       desc: "Interactive 3D room portfolio using Three.js.",
       img: "/images/1.png",
-      github: "https://3-js-portfolio-aarushi-dakshs-projects.vercel.app/",
+      Live: "https://3-js-portfolio-aarushi-dakshs-projects.vercel.app/",
     },
     {
       name: "Docker Express CRUD App 🛠️",
@@ -54,7 +54,7 @@ const Projects = ({ show, onClose, onOpenContact }) => {
       name: "E-commerce Platform 🛒",
       desc: "Next.js and TypeScript based e-commerce application.",
       img: "/images/5.png",
-      github:
+      Live:
         "https://superb-squirrel-63.accounts.dev/sign-in?redirect_url=https%3A%2F%2Fe-com-nextjs-voqit.vercel.app%2F",
     },
     {
@@ -76,9 +76,7 @@ const Projects = ({ show, onClose, onOpenContact }) => {
           transition={{ duration: 0.5 }}
           className="fixed inset-0 z-50 bg-black/50 flex items-center justify-center"
         >
-          <div
-            className={`relative w-full max-w-5xl h-screen rounded-xl shadow-xl overflow-hidden ${bgColor}`}
-          >
+          <div className={`relative w-full max-w-5xl h-screen rounded-xl shadow-xl overflow-hidden ${bgColor}`}>
             {/* Top Wave */}
             <div className="absolute top-0 left-0 w-full overflow-hidden leading-none">
               <svg className="relative block w-full h-[40px]" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320">
@@ -115,20 +113,36 @@ const Projects = ({ show, onClose, onOpenContact }) => {
                 {projects.map((proj, i) => (
                   <div
                     key={i}
-                    className={`rounded-xl shadow-lg overflow-hidden transition transform hover:scale-105 ${isDark ? "bg-gray-800" : "bg-white"}`}
+                    className={`rounded-xl shadow-lg overflow-hidden transition transform hover:scale-105 ${
+                      isDark ? "bg-gray-800" : "bg-white"
+                    }`}
                   >
                     <img src={proj.img} alt={proj.name} className="w-full h-40 object-cover" />
                     <div className="p-4">
                       <h3 className={`text-xl font-semibold ${textColor}`}>{proj.name}</h3>
                       <p className={`text-sm my-2 ${subTextColor}`}>{proj.desc}</p>
-                      <a
-                        href={proj.github}
-                        target="_blank"
-                        rel="noreferrer"
-                        className="inline-block mt-2 px-4 py-2 rounded-md text-sm bg-gradient-to-r from-purple-500 to-pink-500 text-white hover:from-yellow-400 hover:to-red-400 transition"
-                      >
-                        View GitHub →
-                      </a>
+                      <div className="flex flex-wrap gap-3 mt-3">
+                        {proj.github && (
+                          <a
+                            href={proj.github}
+                            target="_blank"
+                            rel="noreferrer"
+                            className="px-4 py-2 rounded-md text-sm bg-gradient-to-r from-purple-500 to-pink-500 text-white hover:from-yellow-400 hover:to-red-400 transition"
+                          >
+                            View GitHub →
+                          </a>
+                        )}
+                        {proj.Live && (
+                          <a
+                            href={proj.Live}
+                            target="_blank"
+                            rel="noreferrer"
+                            className="px-4 py-2 rounded-md text-sm bg-gradient-to-r from-green-500 to-blue-500 text-white hover:from-yellow-400 hover:to-red-400 transition"
+                          >
+                            View Live →
+                          </a>
+                        )}
+                      </div>
                     </div>
                   </div>
                 ))}
@@ -147,7 +161,7 @@ const Projects = ({ show, onClose, onOpenContact }) => {
                   className="p-3 text-md font-semibold text-white bg-gradient-to-r from-purple-400 to-red-500 rounded-lg hover:from-red-500 hover:to-purple-600 transition duration-300 shadow-lg"
                   onClick={() => {
                     onClose();
-                    onOpenContact(); // 👈 open Contact after closing
+                    onOpenContact();
                   }}
                 >
                   Let’s Build Something Amazing!
